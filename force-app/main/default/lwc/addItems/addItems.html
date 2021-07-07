@@ -1,0 +1,145 @@
+<template>
+<lightning-quick-action-panel title="Quick Action Title">
+    <!--FIRST PAGE-->
+    <template if:true={firstPage} >
+        <!--header starts-->
+        <div class="slds-align_absolute-center" style="font-size: 15px;font-weight: 700;">
+            Add Items
+        </div>
+        <!--header ends-->
+        <!--Seach bar starts-->
+        <div class="slds-p-vertical_medium">
+            <!--<label class="slds-form-element__label" for="text-input-id-1">Search</label>-->
+            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                <lightning-icon style="margin-top: 1px;"
+                        size="x-small" 
+                        class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" 
+                        icon-name="utility:search">
+                </lightning-icon>
+                <lightning-input type="text"
+                    placeholder="Search Items..."
+                    onchange={handleNumberChange}>
+                </lightning-input>
+            </div>
+        </div>
+        <!--Seach bar ends-->
+        <!--Seach bar ends-->
+        <div class="slds-p-vertical_medium">
+            Show selected  ({selectedItem})
+        </div>
+        <!--Data Table starts-->
+        <div style="height: 15rem;">
+            
+            <template if:true={data}>
+                <lightning-datatable data={data} 
+                                    columns={columns} 
+                                    key-field="Id" 
+                                    onrowselection={getSelectedName}>
+                </lightning-datatable>
+            </template>
+            <template if:true={error}>
+                {error}
+            </template>
+        </div>
+        <!--Data Table ends-->
+    </template>
+    <!--FIRST PAGE-->
+
+    <!--SECOND PAGE-->
+    <template if:true={secondPage}>         
+            <header class="slds-modal__header">             
+                <h2 id="modal-title" class="slds-modal__title slds-hyphenate">Edit Selected Items</h2>
+            </header>
+               <div >
+                
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class= "slds-line-height_reset">
+                    <th scope="col" class= "slds-required">                            
+                            <div>
+                                <span class="slds-required requiredHeader" >*</span>
+                                <span class="slds-truncate">Item name</span>
+                            </div>
+                     </th>
+                    <th scope="col"  class="slds-required">
+                        <div>
+                        <span class="slds-required requiredHeader" >*</span>
+                        <span class="slds-truncate">Item Quantity</span>
+                    </div>
+                    </th>
+                    <th  scope="col">
+                        <div>
+                        <span class="slds-required requiredHeader" >*</span>
+                         <span class="slds-truncate">Unit Price</span>
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div  class="slds-truncate,slds-required" title="Date">Date</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate,slds-required" title="Item Description">Item Description</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            <template  for:each={restateData} for:item="item" for:index="index">
+                <tr class="slds-hint-parent" key={item.Id} > 
+                    <td  role="gridcell">
+                        <a class="slds-truncate outputLookupLink" href={item.Url}>
+                        <div >{item.itemName}</div>
+                    </a>
+                    </td>                 
+                    <td  role="gridcell">
+                        <div class="slds-truncate forceOutputCurrency,slds-cell-edit cellContainer,popover-wrapper">
+                            <lightning-input class="itemvalue" type="number" data-id={index} value={item.itemCode}  onchange ={handlecode}></lightning-input>
+                            </div>
+                    </td>
+                    <td role="gridcell" >
+                    <div class="slds-truncate forceOutputCurrency,slds-cell-edit cellContainer">
+                        <lightning-input class="uprice" type="number" data-id={index} value={item.unitPrice}   onchange ={handleprice}></lightning-input>
+                        </div>
+                    </td>
+                    <td  role="gridcell">
+                        <div ><lightning-input type="date"  data-id={index}  onchange ={handledate} ></lightning-input></div>
+                        </td>
+                    <td  role="gridcell">
+                        <div ><lightning-input type="text" data-id={index} value={item.itemDescription}  onchange ={handletext}></lightning-input></div>
+                    </td>
+                    <td>
+                        <lightning-button-icon icon-name="utility:delete"  data-id={index} variant="bare" onclick={removeRow}></lightning-button-icon>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        
+        </table>
+    </div>
+
+    </template>
+
+<div  class="modal-footer slds-modal__footer"  style="height: 60px;">
+    <template if:true={showSave}>
+        <template if:true={firstPage}>
+            <div class="slds-m-around_xx-small">
+                <lightning-button variant="brand" label=Next onclick={handleNext} style="float: right;"></lightning-button>
+            </div>
+        </template>
+        <template if:false={firstPage}>
+            <div class="slds-float_left" >
+                <lightning-button  variant="" label="Back"  onclick={handleBack}></lightning-button>
+                
+            </div>
+            <div class="slds-m-around_xx-small">
+                <lightning-button variant="brand" label=Save onclick={handleSave} style="float: right;"></lightning-button>
+            </div>
+
+        </template>
+        
+    </template>
+    <div class="slds-m-around_xx-small">
+        <lightning-button variant="" label="Cancel" onclick={closeAction} style="float: right;margin-left:10px"></lightning-button>
+    </div>
+</div>
+
+</lightning-quick-action-panel>
+</template>

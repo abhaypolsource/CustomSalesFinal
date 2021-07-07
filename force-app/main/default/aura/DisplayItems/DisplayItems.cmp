@@ -1,0 +1,3 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader">
+    <c:addItems name="Itms" />
+</aura:component>

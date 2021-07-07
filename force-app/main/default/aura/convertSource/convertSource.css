@@ -1,0 +1,6 @@
+.THIS.slds-p-around_medium, .THIS.slds-p-around--medium {
+    padding: 0px !important; 
+}
+.THIS.forceChatterBasePublisher :not(.PHONE) .THIS.cuf-content {
+    padding: 0px !important; 
+}

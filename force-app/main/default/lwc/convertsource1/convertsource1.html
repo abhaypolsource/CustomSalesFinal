@@ -1,0 +1,533 @@
+<!--
+  @description       : 
+  @author            : Ashutosh Singh Nagarkoti
+  @group             : 
+  @last modified on  : 28-05-2021
+  @last modified by  : Ashutosh Singh Nagarkoti
+  Modifications Log 
+  Ver   Date                  Author               Modification
+  1.0   22-06-2021  Ashutosh Singh Nagarkoti      Initial Version
+-->
+<template>  
+    <template if:true={isLoading}>
+     <!--   <div style="height:500px;" class="slds-notify slds-notify_alert slds-alert_warning" role="alert">
+            <h2 style="font-size: 2rem;
+            padding: 10px 10px;">You have missed some required field mapping. Please mapped that again. <br/>
+            <a  onclick={navigateNext}>Click here</a> to go to the conversion mapping page.
+            </h2>
+         <div>
+         <img src={errorlogo}/>
+         </div>
+        </div>-->
+       <div class="maperror">
+        <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+            <span class="slds-assistive-text">error</span>
+            <span class="slds-icon_container slds-icon-utility-error slds-m-right_x-small" title="Description of icon when needed">
+            <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"></use>
+            </svg>
+            </span>
+            <h2>You have missed some required field's {requiredFieldResult} <br/>
+            Please <a  onclick={navigateNext}>Click Here </a> to go to the conversion mapping page.
+            </h2>
+            <div class="slds-notify__close">
+                <button class="mapErrorCloseBtn" title="Close" onclick={modalclose}>
+                    X
+                   </button>
+            </div>
+            </div>
+          </div>  
+   <!--    <div class="Maperror_Con">
+            <div class="Maperror_Heading">
+                <h2>Mapping Error</h2>
+            </div>
+            <div class="Maperror_items">
+                <div class="Maperror_inner_con">
+                    <div class="Maperror_left">
+                        <img src={errorlogo} class="Maperror_image">
+                    </div>
+                    <div class="Maperror_right">
+                        <div class="Maperror_content">
+                         <h3>Mapping Error</h3>
+                         <h3>Press Ok to Continue</h3>
+                         <h3>Press Cancel To Quit</h3>
+                         </div>
+                         <div class="Maperror_content2">
+                             <h3>
+                                You have missed some required field mapping. Please mapped that again.<br>
+                                <a  onclick={navigateNext}>Click here</a> to go to the conversion mapping page.
+                             </h3>
+                         </div>
+                    </div>
+                </div>
+                <div class="Maperror_btn">
+                    <button class="slds-button slds-button_neutral">Ok</button>
+                    <button class="slds-button slds-button_neutral">Cancel</button>
+                </div>
+            </div>
+        </div>-->
+    </template> 
+
+ <template if:true={mainhead}>    
+     
+    <section  role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium MainContainer" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+        <div class="slds-modal__container">
+            <button class="MainHeaderBtn" title="Close" onclick={modalclose}>
+                X
+               </button>
+        <header class="slds-modal__header heading_Con">
+         
+        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate heading">  Convert {objectLabel}</h2>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <lightning-accordion allow-multiple-sections-open
+            active-section-name={activeSections}
+            onsectiontoggle={handleToggleSection}
+            >
+            <div class="secA">
+            <lightning-accordion-section name="A" onclick={firstsection} label="Account">
+              
+            <div class="accordian_Con">
+                <div class="accordian_Con_Left">
+                    <p class="label_para"><span class="star_color">*</span>Account Name</p>
+                    <lightning-input type="text" id="accountBox" name='accName' class="newacc" onchange={handleNewRecInput}
+                     role="textbox" value={accountName}></lightning-input>
+                    <template if:true={AccRecord}>
+                     <p class="label_para"><span class="star_color">*</span>Account Record Type</p>
+                        <lightning-combobox
+                        class="accRecordClass"
+                        name="AccRecord"
+                        value={AccRecordValue}
+                        placeholder={AccRecordDisableName}
+                        options={accRecordType}
+                        disabled={AccRecordDisable}
+                        onchange={handleChangeOfAccRecord} ></lightning-combobox>
+                    </template>
+                </div>
+                <div class="accordian_Con_Middle"></div>
+                <div  class="existacc accordian_Con_Right"> 
+                  <!--  <lightning-input type="text" id="account"
+                    label="Account Search" placeholder="Search for match account" role="textbox"></lightning-input>-->
+                    <p class="accerrormsg">You Have To Fill This Existing Account Field</p>
+                    <p class="search_Label">Account Search</p>
+                    <c-custom-lookup-component iconname = "standard:account"
+                    field-name = "Name" 
+                    object-name = "Account" onrecselect={handleAccRecSelect}></c-custom-lookup-component>
+                
+                  <!--  <div>
+                    <template if:true={showSearchedValues}>
+                        <div class="slds-box" style=" 
+                        background-color:white;
+                        width:27.2%;
+                        position:absolute;
+                        z-index:9999999;
+                         height: 130px; 
+                         overflow-y: scroll;">
+                            <ul class="" role="">
+                                <template for:each={accountList} for:item="actObj">
+                                    <li class="slds-p-around_x-small" style="cursor: pointer;" key={actObj.Id} onclick={fillvalueoninput}
+                                        data-value={actObj.Id}
+                                        data-label={actObj.Name}>
+                                        {actObj.Name}
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                    </div>-->
+                </div>
+            </div>
+            
+            </lightning-accordion-section>
+            <div class="radiobtn">
+                <div class="radio1">
+                    <lightning-input type="radio"  name="newAcc" label="Create New"  checked={newAcc} onchange={optionHandler} ></lightning-input>
+                </div>
+                <div class="or">-OR-</div>
+                <div class="radio2"> <lightning-input type="radio"   name="existAcc" label="Choose Existing" checked={existAcc} onchange={optionHandler} ></lightning-input></div>
+            </div>
+            <template if:true={secAfield}>
+            <div class="inputfield">
+                <div class="accountinput1">
+                    <input type="text" readonly class="inputbtn" value={accountName}
+                   role="textbox"></input>
+                </div>
+                <div class="accountinput2 accspace">
+                   <input type="text" readonly class="inputbtn" value={selectedAccName}
+                    placeholder="No active duplicate rule" role="textbox"></input>
+                       
+                    
+                </div>
+            </div>
+            </template>
+            <!--
+            <template if:true={secAfieldcopy}>
+                <div class="inputfield">
+                    <div class="accountinput1">
+                        <lightning-input type="text"
+                       role="textbox"></lightning-input>
+                    </div>
+                    <div class="accountinput2 accspace">
+                        <lightning-input type="text" 
+                        placeholder="No active duplicate rule" role="textbox"></lightning-input>
+                    </div>
+                </div>
+                </template>-->
+            </div>
+            <div class="secB">
+            <lightning-accordion-section name="B" onclick={secondsection} label="Contact">
+                <div class="accordian_Con">
+                    <div class="accordian_Con_Left">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="select-01">Salution</label>
+                            <div class="slds-form-element__control">
+                              <div class="slds-select_container">
+                                <select class="slds-select" id="select-01" name="conTitle" onchange={handleNewRecInput}>
+                                  <option value="">--None--</option>
+                                  <option value ="Mr">Mr.</option>
+                                  <option value="Ms.">Ms.</option>
+                                  <option value="Mrs.">Mrs.</option>
+                                  <option value="Dr.">Dr.</option>
+                                  <option value="Prof.">Prof.</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <lightning-input type="text" id="ContactFirstName" class="newcontact1" name="conFirstName" onchange={handleNewRecInput} value={contactFirstName}
+                          label="First Name"  role="textbox"></lightning-input> 
+                          <p class="label_para"><span class="star_color">*</span>Last Name</p>
+                          <lightning-input type="text" id="ContactLastName" class="newcontact2" name="conName" onchange={handleNewRecInput} value={contactLastName}
+                           role="textbox"></lightning-input> 
+                          <template if:true={ConRecord}>
+                           <p class="label_para"><span class="star_color">*</span>Contact Record Type</p>
+                            <lightning-combobox
+                            class="contRecordClass"
+                            name="ConRecord"
+                            value={ConRecordValue}
+                            placeholder={ConRecordDisableName}
+                            options={contRecordType}
+                            disabled={ConRecordDisable}
+                            onchange={handleChangeOfConRecordType} ></lightning-combobox>
+                        </template>
+                    </div>
+                    <div class="accordianB_Con_Middle"></div>
+                    <div class="accordian_Con_Right">
+                        <p class="conerrormsg">You Have To Fill This Existing Account Field</p>
+                        <p class="search_Label">Contact Search</p>
+                        <!-- <lightning-input type="text" id="ContactSearch"
+                        label="Contact Search" placeholder="Search for matching contacts" role="textbox"></lightning-input>-->
+                        <c-custom-lookup-component iconname = "standard:contact" 
+                        field-name = "Name"
+                        object-name = "Contact" onrecselect={handleConRecSelect}></c-custom-lookup-component>
+                   
+                    </div>
+                </div>
+            </lightning-accordion-section>
+            <div class="radiobtn">
+                <div class="radio1">
+                    <lightning-input type="radio" name="newCon"  checked={newCon} onchange={optionHandler} label="Create New" ></lightning-input>
+                </div>
+                <div class="or">-OR-</div>
+                <div class="radio2"> <lightning-input type="radio" name="existCon" label="Choose Existing" checked={existCon} onchange={optionHandler} ></lightning-input></div>
+            </div>
+            <template if:true={secBfield}>
+            <div class="inputfield">
+                <div class="contactinput1">
+                    <input type="text" value={contactTotalName} onchange={handleNewRecInput} readonly class="inputbtn" name="totalName"
+                   role="textbox"></input>
+                </div>
+                <div class="contactinput2 cntspace">
+                   <input type="text"  readonly class="inputbtn" value={selectedConName}
+                    placeholder="No active duplicate rule" role="textbox"></input>
+                    
+                </div>
+            </div>
+            </template>
+            </div>
+            <div class="secC">
+            <lightning-accordion-section name="C" onclick={thirdsection} label={destinationLabelName}>
+            
+                <div class="accordian_Con">
+                    
+                    <div class="accordian_Con_Left">
+                        <p class="label_para">{destinationLabelName} Name</p>
+                        <lightning-input type="text" id="destinationBox" onchange={handleNewRecInput} value={destinationName} name="desName" class="desContact"
+                       role="textbox" ></lightning-input>
+                        <template if:true={DesRecord}>
+                         <p class="label_para"><span class="star_color">*</span>{destinationLabelName} Record Type</p>
+                            <lightning-combobox
+                            class="destRecordClass"
+                            name="desRecord"
+                            value={DesRecordValue}
+                            placeholder={DesRecordDisableName}
+                            options={destRecordType}  
+                            disabled={DesRecordDisable}
+                            onchange={handleChangeOfDesRecordType} ></lightning-combobox></template>
+                       
+                   <!--    <lightning-input-name
+                            label="Record Type"
+                            value={DesRecordValue}
+                            onchange={handleChangeOfDesRecord}
+                            options={salutations}
+                            class="slds-m-bottom_x-small"
+                            required></lightning-input-name>-->
+             
+                    </div>
+                    <div class="accordian_Con_Middle"></div>
+                    <div class="accordian_Con_Right"> 
+                        <p class="Deserrormsg" >You Have To Fill This Existing {destinationLabelName} Field</p> 
+                        <p class="search_Label">{destinationLabelName} Search</p>
+                        <c-custom-lookup-component iconname = "standard:client"
+                        field-name = "Name"
+                        object-name = {destinationApiName} onrecselect={handleDestiRecSelect}></c-custom-lookup-component>
+                    </div>
+                </div>
+            </lightning-accordion-section>
+            <div class="radiobtn">
+                <div class="radio1">
+                    <lightning-input type="radio" name="newDes" checked={newDes} onchange={optionHandler} label="Create New " disabled={desdisable} ></lightning-input>
+                </div>
+                <div class="or">-OR-</div>
+                <div class="radio2"> <lightning-input type="radio" name="existDes" label="Choose Existing" checked={existDes} onchange={optionHandler} disabled={desdisable} ></lightning-input></div>
+            </div>
+            <template if:true={secCfield}>
+                <div class="inputfield">
+                    <div class="destinationinput1">
+                        <input type="text" class="inputbtn" readonly  value={destinationName} onchange={handleNewRecInput}
+                       role="textbox"></input>
+                    </div>
+                    <div class="destinationinput2 cntspace">
+                        <input type="text" class="inputbtn" readonly placeholder="No active duplicate rule" value={selectedDestName} 
+                       role="textbox"></input>
+                        
+                        
+                        
+                       <!--    <div class="slds-box" style=" 
+                            background-color:white;
+                            width:100%;
+                            margin-top:15px;
+                            border:none;
+                             height: 150px; 
+                             padding:15px;
+                             overflow-y: auto;">
+                             1 Opportunity match
+                               <ul class="" role="">
+                                    <template for:each={accountList} for:item="actObj">
+                                        <li class="slds-p-around_x-small" style="cursor: pointer;" key={actObj.Id} onclick={fillvalueoninput}
+                                            data-value={actObj.Id}
+                                            data-label={actObj.Name}>
+                                            {actObj.Name}
+                                        </li>
+                                    </template>
+                                </ul>
+                                <div class="slds-card" style="border:1px solid #ddd;margin:15px 0px;padding:10px;">
+                                     <lightning-input type="radio" ></lightning-input>
+                                     <div>
+                                         <h3>Dickenson Mobile Genrator</h3>
+                                         <div>
+                                          <p>Account Name:- Dickenson pic</p>   
+                                         <p>Close Date:-</p>
+                                         <p>Amount : $15000/-</p>
+                                         <p>Opportunity Owner:- Rohit Bhalla</p>
+                                         </div>
+                                     </div>
+                                </div>
+            
+                            </div>-->
+                        
+                    </div>
+                </div>
+                </template>
+                <div class="disableBox">
+                    <input type="checkbox" onchange={disabledes} class="checkbox-D"/><span class="disableText">Don't create an {destinationLabelName} upon conversion</span>
+                    </div>
+            </div>
+            </lightning-accordion>
+            <div class="Record_Owner">
+            <div class="RecordBox">
+               <!-- <lightning-input type="text" label="Record Owner"></lightning-input>-->
+               <p class="Recorderrormsg" >You Have To Fill This Record Field</p> 
+               <p style="margin-left: 3%;"><span class="star_color">*</span>Record Owner</p>
+               <c-custom-lookup-component iconname = "standard:user"
+                        field-name = "Name" required
+                        object-name = "User" onrecselect={handleUserRecSelect}></c-custom-lookup-component>
+                    
+            </div>
+            </div>
+        </div>
+        <footer class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" onclick={modalclose} >Cancel</button>
+            <button class="slds-button slds-button_neutral" onclick={convertData}>Convert</button>
+        </footer>
+        </div>
+    </section>
+</template>
+  <!---Model popup start here after lead conver-->
+  <template if:true={isModalOpen}>
+    <!-- Modal/Popup Box LWC starts here -->
+   
+        <section  role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="popupmodal">
+            <div >
+                <header class="">
+                <!--    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" size="medium">
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>-->
+                    <button class="MainHeaderBtn" title="Close" onclick={modalclose}>
+                        X
+                       </button>
+                    <h2 id="modal-heading-02" class="PopupHeading">Your {objectLabel} Has Been Converted</h2>
+                </header>
+                <div class="Popupcard" id="modal-content-id-2">
+                    <div class="Cardcon">
+                        <div class="labelmargin">
+                            <label class="labelheading">{accountLabelName}</label>
+                            <div class="slds-size_small" style="width:280px">
+                                <lightning-card >
+                                    <h3 class="card-heading slds-truncate" slot="title">
+                                        <lightning-icon icon-name="standard:account"></lightning-icon>
+                                        <a target="_blank" onclick={navigateToAccRecordViewPage}
+                                        class="convert_Card_Label"
+                                        >{convertAccName}</a>
+                                    </h3>
+                                    <div class="slds-p-horizontal_small">
+                                      <div class="convert_Card_Feild">
+                                          <div class="convertInputField">
+                                              <div> Type:</div>
+                                              <div class="slds-truncate convertInputField_Right">{convertAccType}</div>
+                                          </div>    
+                                          <div class="convertInputField">
+                                            <div>Phone:</div>
+                                            <div class="slds-truncate convertInputField_Right">{convertAccPhone}</div>
+                                        </div> 
+                                        <div class="convertInputField">
+                                            <div>Website:</div>
+                                            <div class="slds-truncate convertInputField_Right"> {convertAccWebsite}</div>
+                                        </div> 
+                                      <div class="convertInputField">
+                                        <div>Account Owner:</div>
+                                        <div class="slds-truncate convertInputField_Right">{convertAccOwnerName}</div>
+                                    </div> 
+                                    <div class="convertInputField">
+                                        <div> Account Site:</div>
+                                        <div class="slds-truncate convertInputField_Right">{convertAccSite}</div>
+                                    </div> 
+                                      </div>
+                                    </div>
+                                </lightning-card>
+                            </div>
+                        </div>
+                        <div class="labelmargin">
+                            <label class="labelheading" >{contactLabelName}</label>
+                            <div class="slds-size_small" style="width: 280px;">
+                                <lightning-card>
+                                    <h3 class="card-heading slds-truncate" slot="title">
+                                        <lightning-icon icon-name="standard:contact"></lightning-icon>
+                                        <a target="_blank" onclick={navigateToContRecordViewPage}
+                                        class="convert_Card_Label"
+                                        >{convertContName}</a>
+                                    </h3>
+                                    <div class="slds-p-horizontal_small">
+                                        <div class="convert_Card_Feild">
+                                            <div class="convertInputField">
+                                                <div>Title:</div>
+                                                <div class="slds-truncate convertInputField_Right">{convertContTitle}</div>
+                                            </div> 
+                                            <div class="convertInputField">
+                                                <div>Account Name:</div>
+                                                <div class="slds-truncate convertInputField_Right"><a onclick ={navigateToContAccRecordViewPage}>{convertContAccName}</a></div>
+                                            </div> 
+                                            <div class="convertInputField">
+                                                <div> Phone:</div>
+                                                <div class="slds-truncate convertInputField_Right">{convertContMPhone}</div>
+                                            </div> 
+                                            <div class="convertInputField">
+                                                <div>Email:</div>
+                                                <div class="slds-truncate convertInputField_Right"><a href="#">{ convertContEmail}</a></div>
+                                            </div> 
+                                            <div class="convertInputField">
+                                                <div>Mobile:</div>
+                                                <div class="slds-truncate convertInputField_Right">{convertContPhone}</div>
+                                            </div> 
+                                            </div>
+                                    </div>
+                                </lightning-card>
+                            </div>
+                        </div>
+                        <template if:true={disableConvertDest}>
+                        <div class="labelmargin">
+                            <label class="labelheading">{destinationLabelName}</label>
+                            <div class="slds-size_small" style="width:280px">
+                                <lightning-card >
+                                    <h3 class="card-heading slds-truncate" slot="title">
+                                        <lightning-icon icon-name="standard:opportunity"></lightning-icon>
+                                        <a onclick={navigateToDestRecordViewPage} target="_blank"
+                                        class="convert_Card_Label"
+                                        >{convertOppName}</a>
+                                    </h3>
+                                    <div class="slds-p-horizontal_small">
+                                        <div class="convert_Card_Feild">
+                                            <div class="convertInputField">
+                                                <div>Account Name:</div>
+                                                <div class="slds-truncate convertInputField_Right">{convertAccName}</div>
+                                            </div> 
+                                            <div class="convertInputField">
+                                                <div> Close Date:</div>
+                                                <div class="slds-truncate convertInputField_Right">{convertOppDate}</div>
+                                            </div> 
+                                            <div class="convertInputField">
+                                                <div>Amount:</div>
+                                                <div class="slds-truncate convertInputField_Right">{convertOppAmount}</div>
+                                            </div> 
+                                            <div class="convertInputField">
+                                                <div>Opportunity Owner:</div>
+                                                <div class="slds-truncate convertInputField_Right">{convertOppOwnerName}</div>
+                                            </div> 
+                                            </div>
+                                    </div>
+                                </lightning-card>
+                            </div>
+                        </div>
+                     </template>
+                     <template if:true={disableConvertNotOpp}>
+                        <div class="labelmargin">
+                            <label class="labelheading">{destinationLabelName}</label>
+                            <div class="slds-size_small" style="width:280px">
+                                <lightning-card >
+                                    <h3 class="card-heading slds-truncate" slot="title">
+                                        <lightning-icon icon-name="standard:opportunity"></lightning-icon>
+                                        <a onclick={navigateToDestRecordViewPage} target="_blank"
+                                        class="convert_Card_Label"
+                                        >{convertOppName}</a>
+                                    </h3>
+                                    <div class="slds-p-horizontal_small">
+                                        <div class="convert_Card_Feild">
+                                            <div class="convertInputField">
+                                                <div> Name:</div>
+                                                <div class="slds-truncate convertInputField_Right">{convertAccName}</div>
+                                            </div> 
+                                            <div class="convertInputField">
+                                                <div>{destinationLabelName} Owner: </div>
+                                                <div class="slds-truncate convertInputField_Right">{convertOppOwnerName}</div>
+                                            </div> 
+                                            </div>
+                                    </div>
+                                </lightning-card>
+                            </div>
+                        </div>
+                     </template>
+                    </div>
+                       
+
+
+                </div>
+                <footer class="Popupfotter">
+                    <lightning-button style="background-color: white;" label="New Task" variant="Neutral" onclick={navigateToNewTaskPage}></lightning-button>
+                    <!--<lightning-button style="background-color: white;" label={objectLabel} variant="brand" onclick={navigateToListView}></lightning-button>-->
+                    <button class="slds-button slds-button_neutral"  onclick={navigateToListView}>Go to {objectLabel}</button>
+                </footer>
+            </div>
+        </section>
+</template>
+</template>

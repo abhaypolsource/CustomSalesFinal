@@ -1,0 +1,16 @@
+<!--
+  @description       : 
+  @author            : Charu Goyal
+  @group             : 
+  @last modified on  : 26-05-2021
+  @last modified by  : Charu Goyal
+  Modifications Log 
+  Ver   Date         Author              Modification
+  1.0   26-05-2021   Charu Goyal   Initial Version
+-->
+<aura:component implements="force:hasSObjectName,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global">
+  <ltng:require styles="{! $Resource.staticmodal}" />  
+  <aura:attribute name="openModel" type="Boolean"/>
+  <c:convertSourceObjectRecord objectApiName="{!v.sObjectName}" recordId="{!v.recordId}" onvaluechange="{!c.handlepopup}" onclosemodal="{!c.handleCloseModal}"/>
+ <!-- <c:afterConvertConversionCard objectApiName="{!v.sObjectName}" recordId="{!v.recordId}" onvaluechange="{!c.handlepopup}" onclosemodal="{!c.handleCloseModal}"/>-->
+</aura:component>

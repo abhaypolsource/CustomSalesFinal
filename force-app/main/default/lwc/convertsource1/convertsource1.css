@@ -1,0 +1,352 @@
+body{
+    margin:0px;
+    padding:0px;
+}
+
+/*  .Maperror_Con{
+    background-image:linear-gradient(to top,#b0c4df,#799fc7,#4d80ad);
+    border: 2px solid #dddddd03;
+    height: 500px;
+    border-radius: 4px;
+}
+.Maperror_Heading{
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: sans-serif;
+    margin: 10px 25px;
+}
+.Maperror_items{
+    width: 96%;
+    height: 85%;
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+.Maperror_inner_con{
+    display: flex;
+    padding: 30px;
+    height: 80%;
+}
+.Maperror_left{
+    width:15%;
+}
+.Maperror_right{
+    width:80%;
+}
+.Maperror_image{
+    width: 100px;
+    margin-left: 50px;
+}
+
+.Maperror_content{
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: serif;
+    margin-top: 10px;
+}
+.Maperror_content2{
+    margin-top: 50px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: serif;
+}
+.Maperror_btn{
+    background-color: #f3f2f2;
+    text-align: right;
+    height: 20%;
+    padding: 25px
+} */
+.maperror{
+    position: absolute;
+    top: 12rem;
+    left: 10%;
+    width:75rem;
+}
+.mapErrorCloseBtn{
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #fff;
+    background: transparent;
+    position: absolute;
+    top: -55px;
+    right: -12px;
+    width: 25px;
+    border: none;
+    line-height: 1;
+}
+
+.mapErrorCloseBtn:hover{
+    background-color: white;
+    color:black;
+}
+.MainContainer{
+   /* background-color: white;
+    padding: 0px;
+    max-width: 1024px; */
+    width: 90%;
+    
+    height: 510px;
+   
+    margin: 14vh auto;
+}
+.MainHeaderBtn{
+    font-size: 1.6rem;
+    font-weight: 500;
+    /* padding: 0px; */
+    /* margin: 0px; */
+    color: white;
+    background: transparent;
+    position: absolute;
+    top: -30px;
+    right: 0px;
+    width: 25px;
+    border: none;
+    line-height: 1;
+}
+.MainHeaderBtn:hover{
+    color:black;
+    background-color: white;
+}
+.secA{
+background-color:rgb(243, 242, 242);
+border:1px solid #ddd;
+margin-bottom:5px;
+
+}
+.Heading{
+    width: 100%;
+ font-size: 2rem;
+ text-align: center;
+ font-weight:100;
+ background-color:white;
+}
+.heading_Con{
+    padding:10px;
+}
+.heading{
+    font-size: 1.8rem;
+    font-weight: lighter;
+}
+
+.accordian_Con{
+    display:flex; width:100%;margin-left:140px;
+}
+.accordian_Con_Left{
+    background-color:#fff;border:1px solid #ddd;border-radius:7px; padding:15px; width:31%;
+}
+.accordian_Con_Middle{
+    height:11vh;width:2.5px;background-color:#ddd;border-radius:10px; margin: 0px 25px 0px 32px;
+
+}
+.accordianB_Con_Middle{
+    height:30vh;width:2.5px;background-color:#ddd;border-radius:10px;    margin: 0px 25px 0px 32px;
+
+}
+.accordian_Con_Right{
+    width:42%; display:flex;flex-direction:column;
+}
+.label_para{
+    margin-bottom: -15px;
+    margin-top: 5px;
+}
+.search_Label{
+    margin-left: 3%;
+}
+.star_color{
+    color: red;
+}
+.error_msg{
+    color:red; display:block;    margin-top: 0px;
+        margin-left: 10px;
+        font-size: 12px;
+}
+.accerrormsg{
+    display:none;
+}
+.conerrormsg{
+    display:none;
+}
+.Deserrormsg{
+    display:none;
+}
+.Recorderrormsg{
+    display:none;
+}
+.close_btns{
+    position: fixed;
+bottom:0%;
+width: 100%;
+background-color: #ddd;
+padding: 10px;
+text-align: right;
+z-index: 10;
+}
+.radiobtn{
+ width:100%;
+ display:flex;
+ position:absolute;
+ top:-2%;
+ left:150px;
+}
+.radio1,.radio2{
+    width:29%;
+    font-weight: 600;
+    font-size:2rem;
+}
+.or{
+    line-height: 4.2;
+    margin: 0px 20px 0px 35px;
+}
+.inputfield{
+    width:100%;
+    margin-top:-20px;
+ margin-left:150px;
+ display:flex;
+ margin-bottom: 10px;
+}
+.accountinput1{
+    width:31%;
+}
+.accountinput2{
+    width:40%;
+}
+.accspace{
+   margin-left:65px;
+}
+.secB{
+    background-color:rgb(243, 242, 242);
+    position:relative;
+    border:1px solid #ddd;
+    margin-bottom:5px;
+    }
+
+    .contactinput1{
+        width:31%;
+    }
+    .contactinput2{
+        width:40%;
+    }
+    .cntspace{
+       margin-left:65px;
+    }   
+
+    .secC{
+        background-color:rgb(243, 242, 242);
+        position:relative;
+        border:1px solid #ddd;
+        margin-bottom:5px;
+        }
+        .disableBox{
+            display:flex;margin:2px 154px;
+        }
+        .disableText{
+            font-size:0.7rem;line-height:1.1;
+        }
+
+        .destinationinput1{
+            width:31%;
+        }
+        .destinationinput2{
+            width:40%;
+        }
+        .RecordBox{
+            width: 42%; margin:10px 10px;
+        }
+        .popupmodal{
+            background-color: #f1f0f0;
+            height: fit-content;
+            max-height: fit-content;
+            width: 75rem;
+            margin: 0px 17%;
+            max-width: 1024px;
+            position: absolute;
+            /* margin-top: 4%; */
+            top: 18%;
+        }
+        .PopupHeading{
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 100;
+            padding-top: 20px; 
+            padding-bottom: 10px;  
+        }
+        .convertInputField{
+            display: -webkit-inline-box;
+            width: 100%;
+            justify-content: flex-start;
+        }
+        .convertInputField_Right{
+            width:65%;
+            margin-left: 5px;
+        }
+        .Popupfotter{
+         /*   position: fixed;
+            bottom: 2%;
+            background-color: #f1f0f0;
+            width: 100%;*/
+            text-align: right;
+            padding: 2.5vh;
+            background-color: #f1f0f0;
+            border-top:1px solid #ddd;
+        }
+        .Popupcard{
+            margin-top:30px;
+            background-color:#f1f0f0;
+        }
+        .labelheading{
+            font-size: 2rem;
+    font-weight: 100;
+    padding: 10px 5px;
+        }
+        .Cardcon{
+            display: flex;
+    flex-flow: wrap;
+    flex-direction: row;
+    justify-content:center;
+        }
+        .convert_Card_Label{
+            padding-left: 7%;
+            font-size: 25px;
+            font-weight: 500;
+        }
+        .convert_Card_Feild{
+            padding: 0% 5% 10% 19%;
+            height: 135px;
+            font-size: 0.8rem;
+        }
+        .Record_Owner{
+            background-color: white;
+   /* height: 230px;*/
+        }
+        .inputbtn{
+            background-color:white;
+            border:1px solid #ddd;
+            height: 35px;
+    border-radius: 5px;
+    margin-top: 18px;
+    width:100%;
+    padding-left: 5%;
+    line-height: 0;
+    outline:none;
+        }
+.card-heading{
+    width:250px;
+}
+
+    
+    .slds-p-left_small, .slds-p-left--small {
+        /* padding-left: var(--lwc-spacingSmall,0.75rem); */
+          padding-left:0px;
+    }
+
+   .slds-p-around_x-small, .slds-p-around--x-small {
+        padding:0px !important;
+    }
+    .labelmargin{
+        margin:20px 20px;
+        padding:10px;
+    }
+    .slds-text-heading_small, .slds-text-heading--small {
+        color: blueviolet;
+    }

@@ -1,0 +1,22 @@
+<!--
+  @description       : 
+  @author            : Charu Goyal
+  @group             : 
+  @last modified on  : 26-05-2021
+  @last modified by  : Charu Goyal
+  Modifications Log 
+  Ver   Date         Author              Modification
+  1.0   26-05-2021   Charu Goyal   Initial Version
+-->
+<template>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_4-of-4">
+            <div>
+            <!--<p class="slds-form-element__label slds-no-flex">{objectName} Name</p>-->
+                <lightning-input variant="label-hidden" value={searchKey}
+                                type="search" onchange={handleChange} placeholder="type text here">
+                </lightning-input>
+            </div>
+        </div>
+    </div>
+</template>

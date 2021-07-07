@@ -1,0 +1,117 @@
+<!--
+    @Description    :   Created this LWC file to provide user to configure custom sales/custom conversion process. Configure the source 
+                        object, account, contact and opportunity/deal as a dynamic object.
+
+    @created date   :   May 14th 2021
+
+    @created by     :   Saurabh Kumar
+-->
+<template>
+    <div>
+      <template if:true={isSpinnerDisplay}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+      </template>
+        <lightning-card title="Object Mapping">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-size_1-of-2" style="width:40%; margin:15px;">
+                    <p style="font-weight: bold;">Source Object</p>
+                    <!--<select class="slds-select" name = "optionSelect" onchange={handleSourceObjectChange}>
+                        <option value="">None</option>
+                        <template for:each={objects} for:item="object">
+                            <option key={object.objectApiName} value={object.objectApiName}>{object.objectLabel} ({object.objectApiName})</option>
+                        </template>
+                    </select>-->
+                    <template if:true={isShowObjects}>
+                      <c-select-Combobox options={objects} selectedvalue={sourceObject} onvaluechange={handleSourceObjectChange} label=""></c-select-Combobox>
+                    </template>
+                </div>
+                <div class="slds-size_1-of-2" style="width:40%; margin:15px;">
+                  <p style="font-weight: bold;">Destination Object</p>
+                    <!--<select class="slds-select" name = "optionSelect" onchange={handleDestinationObjectChange}>
+                      <option value="">None</option>
+                      <template for:each={objects} for:item="object">
+                        <option key={object.value} value={object.value}>{object.label} ({object.value})</option>
+                      </template>
+                    </select>-->
+                    <template if:true={isShowObjects}>
+                      <c-select-Combobox options={objects} selectedvalue={destinationObject} onvaluechange={handleDestinationObjectChange} label=""></c-select-Combobox>
+                    </template>
+                </div>
+            </div>
+        </lightning-card>
+        <template if:true={isShowFields}>
+          <lightning-card title="Field Mapping">
+              <table class="slds-table slds-table_bordered slds-border_left slds-border_right" align="center">
+                  <thead>
+                      <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="Source Field">Source Field</div>
+                        </th>
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="Account Field">Account Field</div>
+                        </th>
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="Contact Field">Contact Field</div>
+                        </th>
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="Destination Field">Destination Field</div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <template if:true={isShowFields} for:each={fields} for:item="field" for:index="index">
+                        <tr key={field.sourceFieldApiName}>
+                          <td>{field.sourceFieldLabel}</td>
+                          <td><c-select-Combobox options={field.accountFields} fieldmapping={fieldMapping} compatibledatatype ={compatibleDataTypeObject} sourcetype ={field.sourceFieldType} index={index} selectedvalue={field.selectedAccountFieldApiName} onvaluechange={handleAccountFieldSelect} label=""></c-select-Combobox></td>
+                          <td><c-select-Combobox options={field.contactFields} fieldmapping={fieldMapping} compatibledatatype ={compatibleDataTypeObject} sourcetype ={field.sourceFieldType} index={index} selectedvalue={field.selectedContactFieldApiName} onvaluechange={handleContactFieldSelect} label=""></c-select-Combobox></td>
+                          <td><c-select-Combobox options={field.destinationFields} fieldmapping={fieldMapping} compatibledatatype ={compatibleDataTypeObject} sourcetype ={field.sourceFieldType} index={index} selectedvalue={field.selectedDestinationFieldApiName} onvaluechange={handleDestinationFieldSelect} label=""></c-select-Combobox></td>
+                        </tr>
+                      </template>
+                    </tbody>
+              </table>
+
+          </lightning-card>
+        </template>
+        <template if:true={isShowRelatedObjects}>
+          <lightning-card title="Related Objects">
+              <table class="slds-table slds-table_bordered slds-border_left slds-border_right" align="center">
+                  <thead>
+                      <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="Related Object">Related Object</div>
+                        </th>
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="Account">Account</div>
+                        </th>
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="Contact">Contact</div>
+                        </th>
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="Destination">Destination</div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <template if:true={isShowRelatedObjects} for:each={relatedObjects} for:item="childObject" for:index="index">
+                        <tr key={childObject.value}>
+                          <td>{childObject.label}</td>
+                          <td><input type="checkbox" name="" value={index} onclick={handleAccountChildObjectSelect} checked={childObject.isAccountChecked} disabled={childObject.objectNotExistsInAccount}/></td>
+                          <td><input type="checkbox" name="" value={index} onclick={handleContactChildObjectSelect} checked={childObject.isContactChecked} disabled={childObject.objectNotExistsInContact}/></td>
+                          <td><input type="checkbox" name="" value={index} onclick={handleDestinationChildObjectSelect} checked={childObject.isDestinationChecked} disabled={childObject.objectNotExistsInDestination}/></td>
+                        </tr>
+                      </template>
+                    </tbody>
+              </table>
+
+          </lightning-card>
+        </template>
+        <template if:true={isShowFields}>
+          <lightning-card>
+            <div style="margin-left: 40%;">
+              <button class="slds-button slds-button_brand" onclick={onSave}>Save</button>
+              <button class="slds-button slds-button_neutral" onclick={onReset}>Reset</button>
+            </div>
+          </lightning-card>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,196 @@
+<!--
+  @description       : 
+  @author            : Charu Goyal
+  @group             : 
+  @last modified on  : 26-05-2021
+  @last modified by  : Charu Goyal
+  Modifications Log 
+  Ver   Date         Author              Modification
+  1.0   26-05-2021   Charu Goyal   Initial Version
+-->
+<template>
+    <section role="dialog">
+        <div class="">
+            <header class="">
+                <h2 class="heading">CUSTOMSALES {objectLabel} INFORMATION</h2>
+            </header>
+            <div class="firstbox">
+                <div class="checkbox">
+                    <lightning-input type="radio" name="existAcc" label="Existing Account" checked={existAcc}
+                        onchange={optionHandler}>
+                    </lightning-input>
+                    <lightning-input type="radio" name="newAcc" label="New Account" checked={newAcc}
+                        onchange={optionHandler}>
+                    </lightning-input>
+                </div>
+                <template if:false={showAccSearchBar}>
+                    <div class="Input1">
+                        <lightning-input value={accountName} label="Account Name" name="accName"
+                            onchange={handleNewRecInput}></lightning-input>
+                    </div>
+                </template>
+                <template if:true={showAccSearchBar}>
+                    <div class="Input1">
+                        <c-custom-lookup-component iconname="standard:account" field-name="Name" object-name="Account"
+                            selected-record={defaultAccValue} onrecselect={handleAccRecSelect}>
+                        </c-custom-lookup-component>
+                    </div>
+                </template>
+            </div>
+            <div class="secondbox">
+                <div class="checkbox">
+                    <lightning-input type="radio" name="existCon" label="Existing Contact" checked={existCon}
+                        onchange={optionHandler}>
+                    </lightning-input>
+                    <lightning-input type="radio" name="newCon" label="New Contact" checked={newCon}
+                        onchange={optionHandler}>
+                    </lightning-input>
+                </div>
+                <template if:false={showConSearchBar}>
+                    <div class="Input1">
+                        <lightning-input value={contactName} label="Contact Name" name="conName"
+                            onchange={handleNewRecInput}></lightning-input>
+                    </div>
+                </template>
+                <template if:true={showConSearchBar}>
+                    <div class="Input1">
+                        <c-custom-lookup-component iconname="standard:contact" field-name="Name" object-name="Contact"
+                            selected-record={defaultContValue} onrecselect={handleConRecSelect}>
+                        </c-custom-lookup-component>
+                    </div>
+                </template>
+            </div>
+            <div class="secondbox">
+                <div class="checkbox">
+                    <lightning-input type="radio" label="New Opportunity" checked></lightning-input>
+                </div>
+                <div class="Input1">
+                    <lightning-input value={destinationName} label="Opportunity Name" name="desName"
+                        onchange={handleNewRecInput}></lightning-input>
+                </div>
+            </div>
+            <label>Next page </label>
+            <div class="slds-m-vertical_large">
+               <!-- <c-conversion-mapping tab-name="Conversion_Mapping" label="Next">
+                </c-conversion-mapping>-->
+                <lightning-button variant="brand" label={label} title={label} onclick={navigateNext}></lightning-button>
+                <a href={URL} target="_blank">Go to Site</a><br/>
+                <a target="_blank" onclick={navigateToListView}>Go to source</a>
+                <a target="_blank" onclick={navigateToRecordViewPage}>Go to source</a>
+            </div>
+
+            <!--<div>
+                <lightning-radio-group name="accRadioGroup" label="Account" options={accountOptions} 
+                                            value={accValue} required type="radio" onchange={optionHandler}>
+                </lightning-radio-group>
+                <template if:false={showAccSearchBar}>
+                    <div class="Input1">
+                        <lightning-input value={accountName}></lightning-input>
+                    </div>
+                </template>
+                <template if:true={showAccSearchBar}>
+                    <div class="Input1">
+                        <c-custom-lookup-component iconname = "standard:account"
+                                    field-name = "Name"
+                                    object-name = "Account" onrecselect={handleAccRecSelect}></c-custom-lookup-component>
+                        <p> Selected Account Id : {selectedAccId}</p>     
+                    </div>       
+                </template>
+            </div>
+            <div>
+                <lightning-radio-group name="conRadioGroup" label="Contact" options={contactOptions} 
+                                        value={conValue} required type="radio" onchange={optionHandler}>
+                </lightning-radio-group>
+                <template if:false={showConSearchBar}>
+                    <div class="Input1">
+                        <lightning-input value={contactName}></lightning-input>
+                    </div>
+                </template>
+                <template if:true={showConSearchBar}>
+                    <div class="Input1">
+                        <c-custom-lookup-component iconname = "standard:contact"
+                                    field-name = "Name"
+                                    object-name = "Contact" onrecselect={handleConRecSelect}></c-custom-lookup-component>  
+                        <p> Selected Contact Id : {selectedConId}</p>    
+                    </div>           
+                </template>
+            </div>
+            <div>
+                <lightning-radio-group label="Opportunity" options={destinationOptions} 
+                                        value={desValue} required type="radio">
+                </lightning-radio-group>
+                <div class="Input1">
+                    <lightning-input value={destinationName}></lightning-input>
+                </div>
+            </div>-->
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={closeModal}>Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={convertData}>Convert</button>
+
+            </footer>
+        </div>
+    </section>
+    <!---Model popup start here after lead conver-->
+    <template if:true={isModalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" size="medium">
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Converted Records</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                            <label>Account</label>
+                            <div class="slds-size_small">
+                                <lightning-card variant="Narrow" title="Hello" icon-name="standard:account">
+                                    <p class="slds-p-horizontal_small">Card Body Narrow (custom component)</p>
+                                </lightning-card>
+                            </div>
+                        </div>
+                        <div class="slds-col">
+                            <label>Contact</label>
+                            <div class="slds-size_small">
+                                <lightning-card variant="Narrow" title="Hello" icon-name="standard:contact">
+                                    <p class="slds-p-horizontal_small">Card Body Narrow (custom component)</p>
+                                </lightning-card>
+                            </div>
+                        </div>
+                        <div class="slds-col">
+                            <label>Destination</label>
+                            <div class="slds-size_small">
+                                <lightning-card variant="Narrow" title="Hello" icon-name="standard:opportunity">
+                                    <p class="slds-p-horizontal_small">Card Body Narrow (custom component)</p>
+                                </lightning-card>
+                            </div>
+                        </div>
+                        <div class="slds-col">
+                            <label>Next page</label>
+                            <div class="slds-size_small">
+                                
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Close" variant="brand" onclick={saveMethod}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

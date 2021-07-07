@@ -1,0 +1,12 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickAction">
+    <aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+        <aura:html tag="style">
+            .slds-modal__container {
+            width : 75% !important;
+            max-width : 75% !important;
+            }
+        </aura:html>
+    
+        <c:displayProductTables name="Products" />
+    </aura:if>
+</aura:component>

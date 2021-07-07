@@ -1,0 +1,18 @@
+<!--
+  @description       : 
+  @author            : Ashutosh Singh Nagarkoti
+  @group             : 
+  @last modified on  : 26-05-2021
+  @last modified by  : Ashutosh Singh Nagarkoti
+  Modifications Log 
+  Ver   Date                  Author               Modification
+  1.0   24-05-2021  Ashutosh Singh Nagarkoti      Initial Version
+-->
+
+
+<aura:component controller="ConvertRecord" implements="force:hasSObjectName,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global"> 
+    <ltng:require styles="{! $Resource.staticmodal}" /> 
+<c:convertsource1 onclosemodal="{!c.closeaura}"  objectApiName="{!v.sObjectName}" recordId="{!v.recordId}"/>
+<aura:attribute name="sourceObjectName" type="String" default="{!v.sObjectName}"/>
+<aura:attribute name="recordId" type="String"/>
+</aura:component>

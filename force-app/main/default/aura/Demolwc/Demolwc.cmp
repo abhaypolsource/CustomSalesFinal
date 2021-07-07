@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName" access="global" >
+<c:convertsource1 actName="{!v.actname}"/>
+<aura:attribute name="actName" type="string"></aura:attribute>	
+</aura:component>

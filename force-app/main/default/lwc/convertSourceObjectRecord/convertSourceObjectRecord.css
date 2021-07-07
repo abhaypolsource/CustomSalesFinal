@@ -1,0 +1,38 @@
+body{
+    margin:0px;
+    padding:0px;
+}
+
+.heading{
+    font-size:1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding:11px;
+}
+header,footer{
+    background-color: #009688;
+
+}
+.firstbox{
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+}
+.secondbox,.thirdbox{
+    padding-bottom:20px;
+}
+.checkbox{
+    width:90%;
+    margin:auto;
+    display:flex;
+    justify-content: space-between;
+    padding:10px 10px;
+}
+.Input1{
+    width:90%;
+    margin:auto;
+}
+.slds-modal__container{
+    max-width: 90rem !important;
+    width:80% !important;
+}

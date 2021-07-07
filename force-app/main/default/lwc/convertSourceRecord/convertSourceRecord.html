@@ -1,0 +1,31 @@
+<!--
+  @description       : 
+  @author            : Mradul Maheshwari
+  @group             : 
+  @last modified on  : 05-20-2021
+  @last modified by  : Mradul Maheshwari
+  Modifications Log 
+  Ver   Date         Author              Modification
+  1.0   05-19-2021   Mradul Maheshwari   Initial Version
+-->
+<template>
+    Object Name is :{sourceObjectApiName}
+    
+    <lightning-combobox
+     name="accounts"
+     label="Existing Accounts"
+     placeholder="Existing Accounts"
+     options={existingAccountRecords}
+     >
+  </lightning-combobox>
+    Test
+  <lightning-combobox
+     name="contacts"
+     label="Existing Contacts"
+     placeholder="Existing Contacts"
+     options={existingContactRecords}
+     >
+  </lightning-combobox>
+  <c-customlookup filter={companyNameMethod}></c-customlookup>
+    
+</template>

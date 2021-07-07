@@ -1,0 +1,44 @@
+<template>
+    <!--header starts-->
+    <div class="slds-align_absolute-center" style="font-size: 15px;font-weight: 700;">
+        Add Products
+    </div>
+    <!--header ends-->
+    <!--Seach bar starts-->
+    <div class="slds-p-vertical_medium">
+        <!--<label class="slds-form-element__label" for="text-input-id-1">Search</label>-->
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+            <lightning-icon style="margin-top: 1px;"
+                    size="x-small" 
+                    class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" 
+                    icon-name="utility:search">
+            </lightning-icon>
+
+            <lightning-input type="text"
+                placeholder="Search Products..."
+                onchange={handleNumberChange}
+                onkeypress={onTextChange}>
+            </lightning-input>
+        </div>
+    </div>
+    <!--Seach bar ends-->
+    <div class="slds-p-vertical_medium">
+        Show selected = {selectedItem}
+    </div>
+
+    <!--Data Table starts-->
+    <div style="height: 15rem;">
+        <template if:true={data}>
+            <lightning-datatable data={data} 
+                                columns={columns} 
+                                key-field="Id" 
+                                onrowselection={getSelectedName}>
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            {error}
+        </template>
+    </div>
+    <!--Data Table ends-->
+    
+</template>

@@ -1,0 +1,427 @@
+<!--
+  @description       : 
+  @author            : Ashutosh Singh Nagarkoti
+  @group             : 
+  @last modified on  : 28-05-2021
+  @last modified by  : Ashutosh Singh Nagarkoti
+  Modifications Log 
+  Ver   Date                  Author               Modification
+  1.0   24-05-2021  Ashutosh Singh Nagarkoti      Initial Version
+-->
+
+
+
+
+<!--<template >
+    <section role="dialog">
+        <div class="">
+        <header class="">
+        <h2 class="heading">CUSTOMSALES LEAD INFORMATION</h2>
+        </header>
+        <div class="">
+         <div class="firstbox">
+             <div class="checkbox">
+               <lightning-input type="radio" name="btn1"  onchange={trueinputhandler}  checked label="Existing Account " ></lightning-input>
+                 <lightning-input type="radio" name="btn1"  onchange={falseinputhandler} label="New Account" ></lightning-input> -->
+            <!--     <lightning-radio-group name="radiogroup"
+                                        options={options}
+                                        type="radio"
+                                        value={value}
+                                        onchange={falseinputhandler}
+                 ></lightning-radio-group> -->
+       <!--     </div>
+             <div class="Input1">
+                <template if:true={closingorignalpickup}> 
+               <lightning-input type="text" disabled={isdisabled} id="accountBox" value={accountName} onchange={handleKeyChange}
+                 label="Account Name" placeholder="Existing Account name" role="textbox"></lightning-input>
+                 </template>-->
+               
+                <!-- <c-custom-lookup-component iconname = "standard:account" disabled={isdisabled}
+        field-name = "Name"
+        object-name = "Account"></c-custom-lookup-component>-->
+     <!--  <template if:true={openpickup}>
+            <div>
+            <p>Account Name</p>    
+            <input class="slds-input slds-combobox__input
+            slds-combobox__input-value" 
+            id="combobox-id-5" aria-controls="listbox-id-5" 
+            autocomplete="off" role="textbox" type="text" 
+            value={accountNameforpickup}
+            disabled
+            />
+ <button style="position: absolute;
+ transform: translate(-110%, 10%);"  class="sicon_container slds-button  slds-button_icon 
+ slds-input__icon slds-input__icon_right"      onclick ={closingpickup}
+         title="Remove selected option">
+     <lightning-icon icon-name="utility:close" size="small">
+     </lightning-icon>
+     <span class="slds-assistive-text">Remove selected option</span>
+ </button>
+ </div>
+        </template>
+             </div>
+             <template if:true={showSearchedValues}>
+                <div class="slds-box" style=" position:absolute;
+                background-color:white;
+                width:90%;
+                z-index:9999999;
+               transform:translateX(5.5%);
+                 height: 130px; 
+                 overflow-y: scroll;">
+                    <ul class="" role="">
+                        <template for:each={accountList} for:item="actObj">
+                            <li class="slds-p-around_x-small" style="cursor: pointer;" key={actObj.Id} onclick={fillvalueoninput}
+                                data-value={actObj.Id}
+                                data-label={actObj.Name}>
+                                {actObj.Name}
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+         </div>
+         
+         <div class="secondbox">
+            <div class="checkbox">
+                <lightning-input type="radio" name="btn2" checked label="Existing Contact " onchange={trueinputhandler2} ></lightning-input>
+                <lightning-input type="radio" name="btn2"  label="New Contact" onchange={falseinputhandler2} ></lightning-input>
+            </div>
+            <div class="Input1">
+                <lightning-input type="text" disabled={isdisabled2} id="contactBox" value={contactName} onchange={handleOnChangeContact}
+                label="Contact Name" placeholder="Existing Contact name" role="textbox"></lightning-input>
+            </div>
+            <template if:true={showSearchedValuesofcontact}>
+                <div class="slds-box" style=" position:absolute;
+                background-color:white;
+                width:90%;
+                z-index:9999999;
+                transform:translateX(5.5%);
+                 height: 130px; 
+                 overflow-y: scroll;">
+                    <ul class="" role="">
+                        <template for:each={contactLists} for:item="counter">
+                            <li class="slds-p-around_x-small" style="cursor: pointer;" key={counter.Id} onclick={pickcontacts}
+                                data-value={counter.Id}
+                                data-label={counter.Name}>
+                                 {counter.Name}
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+        </div>
+        <div class="secondbox">
+            <div class="checkbox">
+                <lightning-input type="radio" name="btn3" checked label="New Opportunity " ></lightning-input>
+            </div>
+            <div class="Input1">
+                <lightning-input type="text" id="opportunityBox" disabled
+                label="Opportunity" placeholder="More Opportunity" role="textbox"></lightning-input>
+            </div>
+            <template if:true={showSearchedValues3}>
+                <div class="slds-box" style=" position:absolute;
+                background-color:white;
+                width:90%;
+                z-index:9999999;
+                transform:translateX(5.5%);
+                 height: 130px; 
+                 overflow-y: scroll;">-->
+                <!--    <ul class="" role="">
+                        <template for:each={accountList} for:item="actObj">
+                            <li class="slds-p-around_x-small" style="cursor: pointer;" key={actObj.Id}
+                                data-value={actObj.Id}
+                                data-label={actObj.Name}>
+                                {actObj.Name}
+                            </li>
+                        </template>
+                    </ul>-->
+              <!--  </div>
+            </template>
+        </div>
+        </div>
+        <footer class="slds-modal__footer">
+        <button class="slds-button slds-button_neutral" onclick={modalclose} >Cancel</button>
+        <button class="slds-button slds-button_neutral" >Convert</button>
+        </footer>
+        </div>
+        </section>
+      
+</template>-->
+
+<template>
+    <template if:true={mainhead}>   
+    <div style = "width: 100%;
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: bolder;
+    background-color: #f9ffff">
+          Convert {objectLabel}
+    </div>   
+   
+   <lightning-accordion allow-multiple-sections-open
+   active-section-name={activeSections}
+   onsectiontoggle={handleToggleSection}
+   >
+   <div class="secA">
+   <lightning-accordion-section name="A" onclick={firstsection} label="Account">
+     
+   <div style="display:flex;justify-content:center; width:100%;margin-left:5%">
+       <div style="background-color:#fff;border:1px solid #ddd;border-radius:7px; padding:15px; width:35%">
+           <lightning-input type="text" id="accountBox" class="newacc" value={accountName} onchange={handleNewRecInput}
+           label="Account Name"  role="textbox"></lightning-input>
+       </div>
+       <div style="height:11vh;width:2.5px;background-color:#ddd;border-radius:10px;margin:0px 5%"></div>
+       <div style="width:35%; display:flex;flex-direction:column;" class="existacc"> 
+         <!--  <lightning-input type="text" id="account"
+           label="Account Search" placeholder="Search for match account" role="textbox"></lightning-input>-->
+           <c-custom-lookup-component iconname = "standard:account"
+           field-name = "Name" 
+           object-name = "Account" onrecselect={handleAccRecSelect}></c-custom-lookup-component>
+         <!--  <div>
+           <template if:true={showSearchedValues}>
+               <div class="slds-box" style=" 
+               background-color:white;
+               width:27.2%;
+               position:absolute;
+               z-index:9999999;
+                height: 130px; 
+                overflow-y: scroll;">
+                   <ul class="" role="">
+                       <template for:each={accountList} for:item="actObj">
+                           <li class="slds-p-around_x-small" style="cursor: pointer;" key={actObj.Id} onclick={fillvalueoninput}
+                               data-value={actObj.Id}
+                               data-label={actObj.Name}>
+                               {actObj.Name}
+                           </li>
+                       </template>
+                   </ul>
+               </div>
+           </template>
+           </div>-->
+       </div>
+   </div>
+   
+   </lightning-accordion-section>
+   <div class="radiobtn"> 
+       <div class="radio1">
+           <lightning-input type="radio"  name="newAcc" label="New Account"  checked={newAcc} onchange={optionHandler} ></lightning-input>
+       </div>
+       <div class="or">-OR-</div>
+       <div class="radio2"> <lightning-input type="radio"   name="existAcc" label="Existing Account" checked={existAcc} onchange={optionHandler} ></lightning-input></div>
+   </div>
+   <template if:true={secAfield}>
+   <div class="inputfield">
+       <div class="accountinput1">
+           <lightning-input type="text" value={accountName} onchange={optionHandler}
+          role="textbox"></lightning-input>
+       </div>
+       <div class="accountinput2 accspace">
+          <lightning-input type="text" 
+           placeholder="No active duplicate rule" value={defaultAccValue} role="textbox"></lightning-input>
+              
+           
+       </div>
+   </div>
+   </template>
+   <!--
+   <template if:true={secAfieldcopy}>
+       <div class="inputfield">
+           <div class="accountinput1">
+               <lightning-input type="text"
+              role="textbox"></lightning-input>
+           </div>
+           <div class="accountinput2 accspace">
+               <lightning-input type="text" 
+               placeholder="No active duplicate rule" role="textbox"></lightning-input>
+           </div>
+       </div>
+       </template>-->
+   </div>
+   <div class="secB">
+   <lightning-accordion-section name="B" onclick={secondsection} label="Contact">
+       <div style="display:flex;justify-content:center; width:100%; margin-left:5%;">
+           <div style="background-color:#fff;border:1px solid #ddd;padding:15px;width:35%;border-radius:7px;">
+               <div class="slds-form-element">
+                   <label class="slds-form-element__label" for="select-01">Salution</label>
+                   <div class="slds-form-element__control">
+                     <div class="slds-select_container">
+                       <select class="slds-select" id="select-01">
+                         <option value="">--None--</option>
+                         <option>Mr.</option>
+                         <option>Ms.</option>
+                         <option>Mrs.</option>
+                         <option>Dr.</option>
+                         <option>Prof.</option>
+                       </select>
+                     </div>
+                   </div>
+                 </div>
+                 <lightning-input type="text" id="ContactFirstName" class="newcontact"
+                 label="First Name"  role="textbox"></lightning-input> 
+                 <lightning-input type="text" id="ContactLastName" class="newcontact" value={contactName}
+                 label="Last Name"  role="textbox"></lightning-input> 
+           </div>
+           <div style="height:30vh;width:2.5px;background-color:#ddd;border-radius:10px;margin:0px 5%"></div>
+           <div style="width:35%;">
+               <!-- <lightning-input type="text" id="ContactSearch"
+               label="Contact Search" placeholder="Search for matching contacts" role="textbox"></lightning-input>-->
+               <c-custom-lookup-component iconname = "standard:account"
+               field-name = "Name"
+               object-name = "Account" onrecselect={handleConRecSelect}></c-custom-lookup-component>
+           </div>
+       </div>
+   </lightning-accordion-section>
+   <div class="radiobtn">
+       <div class="radio1">
+           <lightning-input type="radio" name="newCon"  checked={newCon} onchange={optionHandler} label="Create New" ></lightning-input>
+       </div>
+       <div class="or">-OR-</div>
+       <div class="radio2"> <lightning-input type="radio" name="existCon" label="Existing Contact" checked={existCon} onchange={optionHandler} ></lightning-input></div>
+   </div>
+   <template if:true={secBfield}>
+   <div class="inputfield">
+       <div class="contactinput1">
+           <lightning-input type="text" onchange={handleNewRecInput} value={contactName}
+          role="textbox"></lightning-input>
+       </div>
+       <div class="contactinput2 cntspace">
+          <lightning-input type="text" 
+           placeholder="No active duplicate rule" role="textbox"></lightning-input>
+           
+       </div>
+   </div>
+   </template>
+   </div>
+   <div class="secC">
+   <lightning-accordion-section name="C" onclick={thirdsection} label="Destination">
+   </lightning-accordion-section>
+   <div class="radiobtn">
+       <div class="radio1">
+           <lightning-input type="radio" name="btn3" onclick={DestinationValueNew} checked label="Create New " ></lightning-input>
+       </div>
+       <div class="or">-OR-</div>
+       <div class="radio2"> <lightning-input type="radio" onclick={DestinationValueExisting} name="btn3" label="Choose Existing " ></lightning-input></div>
+   </div>
+   <template if:true={secCfield}>
+       <div class="inputfield">
+           <div class="destinationinput1">
+               <lightning-input type="text" onchange={handleNewRecInput}
+              role="textbox"></lightning-input>
+           </div>
+           <div class="destinationinput2 cntspace">
+               <template if:false={destinationcard}>
+               <lightning-input type="text" 
+               placeholder="No active duplicate rule" role="textbox"></lightning-input>
+               </template>
+               <template if:true={destinationcard}>
+               
+               
+              <!--    <div class="slds-box" style=" 
+                   background-color:white;
+                   width:100%;
+                   margin-top:15px;
+                   border:none;
+                    height: 150px; 
+                    padding:15px;
+                    overflow-y: auto;">
+                    1 Opportunity match
+                      <ul class="" role="">
+                           <template for:each={accountList} for:item="actObj">
+                               <li class="slds-p-around_x-small" style="cursor: pointer;" key={actObj.Id} onclick={fillvalueoninput}
+                                   data-value={actObj.Id}
+                                   data-label={actObj.Name}>
+                                   {actObj.Name}
+                               </li>
+                           </template>
+                       </ul>
+                       <div class="slds-card" style="border:1px solid #ddd;margin:15px 0px;padding:10px;">
+                            <lightning-input type="radio" ></lightning-input>
+                            <div>
+                                <h3>Dickenson Mobile Genrator</h3>
+                                <div>
+                                 <p>Account Name:- Dickenson pic</p>   
+                                <p>Close Date:-</p>
+                                <p>Amount : $15000/-</p>
+                                <p>Opportunity Owner:- Rohit Bhalla</p>
+                                </div>
+                            </div>
+                       </div>
+   
+                   </div>-->
+               
+             
+               </template>
+           </div>
+       </div>
+       </template>
+   </div>
+   </lightning-accordion>
+   
+   <div style=" position: fixed;
+   bottom: 5%;
+   width: 100%;
+   background-color: #ddd;
+   height: 8%;
+   padding: 10px;
+   text-align: right;">
+       <button class="slds-button slds-button_neutral" onclick={modalclose} >Cancel</button>
+       <button class="slds-button slds-button_neutral" onclick={convertData}>Convert</button>
+   </div>
+   </template>
+     <!---Model popup start here after lead conver-->
+     <template if:true={isModalOpen}>
+       <!-- Modal/Popup Box LWC starts here -->
+      
+           <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="popupmodal">
+               <div >
+                   <header class="">
+                   <!--    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                           <lightning-icon icon-name="utility:close" size="medium">
+                           </lightning-icon>
+                           <span class="slds-assistive-text">Close</span>
+                       </button>-->
+                       <h2 id="modal-heading-01" class="PopupHeading">Your Lead Has Been Converted</h2>
+                   </header>
+                   <div class="Popupimage">
+                       <img src="https://salesprocess2-dev-ed.lightning.force.com/projRes/ui-lead-runtime-components/images/lead_convert_celebration@2x.gif" height=25vh; alt="">
+                   </div>
+                   <div class="Popupcard" id="modal-content-id-1">
+                      
+   
+                       <div class="Cardcon">
+                           <div class="">
+                               <label class="labelheading">Account</label>
+                               <div class="slds-size_small">
+                                   <lightning-card variant="Narrow" title="Hello" icon-name="standard:account">
+                                       <p class="slds-p-horizontal_small">Card Body Narrow (custom component)</p>
+                                   </lightning-card>
+                               </div>
+                           </div>
+                           <div class="">
+                               <label class="labelheading" >Contact</label>
+                               <div class="slds-size_small">
+                                   <lightning-card variant="Narrow" title="Hello" icon-name="standard:contact">
+                                       <p class="slds-p-horizontal_small">Card Body Narrow (custom component)</p>
+                                   </lightning-card>
+                               </div>
+                           </div>
+                           <div class="">
+                               <label class="labelheading">Destination</label>
+                               <div class="slds-size_small">
+                                   <lightning-card variant="Narrow" title="Hello" icon-name="standard:opportunity">
+                                       <p class="slds-p-horizontal_small">Card Body Narrow (custom component)</p>
+                                   </lightning-card>
+                               </div>
+                           </div>
+                       </div>
+                          
+   
+   
+                   </div>
+                   <footer class="Popupfotter">
+                       <lightning-button style="background-color: white;" label="Close" variant="brand" onclick={saveMethod}></lightning-button>
+                   </footer>
+               </div>
+           </section>
+   </template>
+   </template>

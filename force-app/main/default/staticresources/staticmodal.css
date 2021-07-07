@@ -1,0 +1,61 @@
+.slds-p-around_medium,.slds-p-around--medium {
+    padding: 0px !important; 
+}
+/*.MainContainer .slds-modal__container{
+	width: 100vw !important;
+	max-width: 100% !important;
+//        height:fit-content !important;
+  //      max-height:fit-content !important;
+        padding:0px !important;
+      //  margin-left:0% ! important;
+        height:513px !important;
+        magrin-top:2% !important;
+        min-width:710px !important;
+         margin: 0px auto !important;
+}*/
+
+.error_msg ~ c-custom-lookup-component .slds-form-element{
+ border:1px solid red;
+}
+
+.slds-modal__container {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1024px;
+    min-width: 710px;
+    height: 600px;
+    /* max-width: 1024px; */
+}
+
+.uiModal--medium .modal-container {
+    width: 70%;
+    margin-top: 55px;
+    max-width: 840px;
+    min-width: 480px;
+}
+
+.MainContainer .slds-modal__container {
+    width: 100% !important;
+    max-width: 1024px !important;
+    padding: 0px !important;
+    /* margin-left: 0% ! important; */
+    height: 500px !important;
+    magrin-top: 2% !important;
+    min-width: 710px !important;
+    /* margin: 110px auto !important; */
+    background-color: white;
+    /* position: absolute; */
+    /* left: -200px; */
+    margin: auto;
+}
+.forceChatterBasePublisher :not(.PHONE) .cuf-content {
+    padding: 0px !important; 
+}
+.slds-modal__content{
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border:none !important;
+}
+.slds-modal__close{
+    display:none !important;
+}
